@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="demo.css" />
+<h1>Spectrum CSS Workflow Icon Literals Demo: hyperHTML</h1>
+<p>Use the hyperHTML parser and renderer to append icons to the page via <code>hyper(el)`...`</code></p>
+<p><a href="../demo/">See all demos</a></p>
+<h2>Icons</h2>
+<div class="demo"></div>
+<script type="module">
+  import * as icons from '../lib/icons.js';
+  import {hyper} from 'https://unpkg.com/hyperhtml?module';
+  import {listIcons} from './builder.js';
+  icons.setCustomTemplateLiteralTag(hyper);
+  let demo = document.querySelector('.demo');
+  let demos = listIcons(icons, hyper);
+  hyper(demo)`${demos}`;
+</script>

@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="demo.css" />
+<h1>Spectrum CSS Workflow Icon Literals Demo: lighterhtml</h1>
+<p>Use the lighterhtml parser and renderer to append icons to the page via <code>el.appendChild(html`...`)</code></p>
+<p><a href="../demo/">See all demos</a></p>
+<h2>Icons</h2>
+<div class="demo"></div>
+<script type="module">
+  import * as icons from '../lib/icons.js';
+  import {html} from '//unpkg.com/lighterhtml?module';
+  import {listIcons} from './builder.js';
+  icons.setCustomTemplateLiteralTag(html);
+  let demo = document.querySelector('.demo');
+  let demos = listIcons(icons, html);
+  demo.appendChild(html`${demos}`);
+</script>

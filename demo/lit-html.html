@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="demo.css" />
+<h1>Spectrum CSS Workflow Icon Literals Demo: lit-html</h1>
+<p>Use the lit-html parser and renderer to append icons to the page via <code>render()</code></p>
+<p><a href="../demo/">See all demos</a></p>
+<h2>Icons</h2>
+<div class="demo"></div>
+<script type="module">
+  import * as icons from '../lib/icons.js';
+  import {html, render} from 'https://unpkg.com/lit-html/lit-html.js?module';
+  import {listIcons} from './builder.js';
+  icons.setCustomTemplateLiteralTag(html);
+  let demo = document.querySelector('.demo');
+  let demos = listIcons(icons, html);
+  let configurator = html`
+    <div>
+      <label for="color">Icon Color:</label>
+      <input type="color" id="color" name="color" @input=${changeColor} />
+      <label for="size">Icon Size:</label>
+      <input type="range" id="size" name="size" value="50" min="25" max="75" step="5" @input="${changeSize}" />
+    </div>
+  `;
+  render([configurator, demos], demo);
+  function changeColor(e) {
+    demo.style.color = e.target.value;
+  }
+  function changeSize(e) {
+    let demos = listIcons(icons, html, {width: e.target.value, height: e.target.value, hidden: 0});
+    render([configurator, demos], demo);
+  }
+</script>

@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="demo.css" />
+<h1>Spectrum CSS Workflow Icon Literals Demo: React</h1>
+<p>Use the <code>htm</code> parser and <code>react</code> renderer to append icons to the page via <code>render()</code></p>
+<p><a href="../demo/">See all demos</a></p>
+<h2>Icons</h2>
+<div class="render-zone"></div>
+<script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+<script type="module">
+  import * as icons from '../lib/icons.js';
+  import htm from 'https://unpkg.com/htm?module';
+  import {listIcons} from './builder.js';
+  const html = htm.bind(React.createElement);
+  icons.setCustomTemplateLiteralTag(html);
+  let renderZone = document.querySelector('.render-zone');
+  let demos = listIcons(icons, html);
+  ReactDOM.render(html`<div className="demo">${demos}</div>`, renderZone)
+</script>
